@@ -7,3 +7,6 @@ const messageSchema = new Schema({
     Description: String,
     timestamps: true,
 })
+
+const MessageEntry = mongoose.model('MessageEntry', messageSchema)
+module.exports(MessageEntry)
