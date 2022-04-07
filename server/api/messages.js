@@ -11,3 +11,16 @@ router.get('/', async (req, res, next) => {
       next(err)
     }
   });
+
+
+router.post('/', async(req, res, next) => {
+  try {
+    const messageEntry = new MessageEntry(req.body);
+    const createdEntry = await messageEntry.save();
+    res.json(createdEntry)
+  }
+  catch (err){
+    next(err)
+  }
+
+})
