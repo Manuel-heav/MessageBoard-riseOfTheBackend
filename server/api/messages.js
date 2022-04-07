@@ -8,6 +8,6 @@ router.get('/', async (req, res, next) => {
       const entries = await MessageEntry.find();
       res.json(entries);
     } catch (err) {
-      next(err);
+      next(err)
     }
   });
