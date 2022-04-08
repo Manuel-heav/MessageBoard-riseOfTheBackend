@@ -2,14 +2,21 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-
+const mongoose = require('mongoose');
 require('dotenv').config()
 
-
-app.use(morgan())
-app.use(cors())
-app.use(helmet())
 const app = express()
+
+
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+app.use(morgan())
+app.use(cors({
+    origin: process.env.CORS_ORIGIN
+}))
+app.use(helmet())
 
 
 app.get('/', (req, res) => {
@@ -17,6 +24,8 @@ app.get('/', (req, res) => {
         message: "Hello"
     })
 })
+
+app.use('/api/messages', message)
 
 const notFound = (req,res, next) => {
     res.status(404)
@@ -37,6 +46,6 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 2000
 
 app.listen(PORT, () => {
-    console.log(`Listening to port ${PORT}`)
+    console.log(`Listening to port ${PORT}`);
 })
 
