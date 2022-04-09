@@ -13,14 +13,17 @@ router.get('/', async (req, res, next) => {
   });
 
 
-router.post('/', async(req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const messageEntry = new MessageEntry(req.body);
     const createdEntry = await messageEntry.save();
     res.json(createdEntry)
   }
   catch (err){
-    next(err)
+    if (err.name === 'ValidationError') {
+      res.status(422);
+    }
+    next(err);
   }
 
 })

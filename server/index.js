@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const messages = require('./api/messages')
 require('dotenv').config()
 
 const app = express()
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('/api/messages', message)
+app.use('/api/messages', messages)
 
 const notFound = (req,res, next) => {
     res.status(404)
