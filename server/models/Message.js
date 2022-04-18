@@ -5,12 +5,15 @@ const { Schema } = mongoose;
 const messageSchema = new Schema({
     username: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String,
-        require: true
+        required: true
     },
+    imageUrl: {
+        type: String,
+    }
 })
 
 const MessageEntry = mongoose.model('MessageEntry', messageSchema)
