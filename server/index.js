@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
+// const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -17,9 +17,9 @@ mongoose.connect(process.env.MONGOOSE_KEY, {
     console.log("connected")
 })
 app.use(morgan())
-app.use(cors({
-    origin: process.env.CORS_ORIGIN
-}))
+// app.use(cors({
+//     origin: process.env.CORS_ORIGIN
+// }))
 app.use(helmet())
 
 app.use(bodyParser.json());
