@@ -10,7 +10,7 @@ require('dotenv').config()
 const app = express()
 
 
-mongoose.connect("mongodb+srv://admin:admin123@cluster0.l4c0l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGOOSE_KEY, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },() => {
