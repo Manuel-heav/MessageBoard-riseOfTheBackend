@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-// const cors = require('cors');
+const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,20 +10,19 @@ require('dotenv').config()
 const app = express()
 
 
-mongoose.connect(process.env.MONGOOSE_KEY, {
+mongoose.connect("mongodb+srv://admin:admin123@cluster0.l4c0l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },() => {
     console.log("connected")
 })
 app.use(morgan())
-// app.use(cors({
-//     origin: process.env.CORS_ORIGIN
-// }))
+app.use(cors())
 app.use(helmet())
 
 app.use(bodyParser.json());
 
+app.use('/api/messages', messages)
 
 app.get('/', (req, res) => {
     res.json({
@@ -31,7 +30,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('/api/messages', messages)
 
 const notFound = (req,res, next) => {
     res.status(404)
