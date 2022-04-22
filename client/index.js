@@ -3,8 +3,8 @@ let elements;
 fetch('http://localhost:2000/api/messages')
 .then(res => res.json())
 .then(data => (
-    data.map((item) => (
-      elements += `
+    data.map((item) => {
+    const element = `
       <main>
 <div class="card mb-3">
 <div class="card-body">
@@ -20,9 +20,11 @@ fetch('http://localhost:2000/api/messages')
 </div>
 
 </main>
-      `
+      `;
+    
+    console.log(element)}
     ))
-  ))
+  )
 
   console.log(elements)
 
