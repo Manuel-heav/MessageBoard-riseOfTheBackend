@@ -21,8 +21,9 @@ fetch('http://localhost:2000/api/messages')
 
 </main>
       `;
-    
-    console.log(element)}
+      console.log(element)
+      container.innerHTML = element
+    }
     ))
   )
 
